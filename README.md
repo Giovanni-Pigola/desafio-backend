@@ -7,6 +7,9 @@ Tente limitar a quantidade de tempo gasto nisso para no máximo 4 horas. No enta
 
 _Dica_: Estamos procurando um envio de alta qualidade, não uma abordagem do tipo "apenas faça-o". Lembre-se de que este teste é a sua oportunidade de nos mostrar como você pensa; portanto, seja claro sobre como você está pensando em seu código - seja com comentários, testes, como você nomeia coisas etc. Você será avaliado tanto pelas funcionalidade do seu código quanto pela utilização de boas práticas, desenvolva como se fosse um código de produção em um time e não uma prova ou script.
 
+## forma de entrega
+Fazer um fork deste projeto e nos enviar a url do seu fork.
+
 ## O que fazer
 
 ### Primeiro
@@ -21,7 +24,7 @@ Sabendo disto o nosso pessoal de mobile precisa de uma API no backend para que p
 
 Nesta API precisamos:
 - Antenticação de usuário no padrão JWT (Não precisa dos endpoints para criar o usuário, mas somente o endpoint que recebe o email e senha do usuário e já faça a sua autenticação na API)
-- Endpoint para listar as últimas viagens do usuário logado.
+- Endpoint para listar as últimas viagens do usuário logado
 - Endpoint para enviar a classificação da viagem e a sua nota
 
 ### Paylod dos objetos
@@ -65,4 +68,6 @@ _Obs_: A nota da viagem varia de 1 à 5
 
 ### Banco de dados
 
-Você pode usar o SQLite para persistir os dados da nossa aplicação
+Você pode usar o SQLite para persistir os dados da nossa aplicação.
+
+**Boa sorte!**
