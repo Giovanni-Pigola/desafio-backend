@@ -7,14 +7,14 @@ Tente limitar a quantidade de tempo gasto nisso para no máximo 4 horas. No enta
 
 _Dica_: Estamos procurando um envio de alta qualidade, não uma abordagem do tipo "apenas faça-o". Lembre-se de que este teste é a sua oportunidade de nos mostrar como você pensa; portanto, seja claro sobre como você está pensando em seu código - seja com comentários, testes, como você nomeia coisas etc. Você será avaliado tanto pelas funcionalidade do seu código quanto pela utilização de boas práticas, desenvolva como se fosse um código de produção em um time e não uma prova ou script.
 
-## forma de entrega
+## Forma de entrega
 Fazer um fork deste projeto e nos enviar a url do seu fork.
 
 ## O que fazer
 
 ### Primeiro
 
-* Crie uma nova aplicação em Python (qualquer framework está valendo, preferimos o Django)
+Crie uma nova aplicação em Python (qualquer framework está valendo, preferimos o Django)
 
 
 ### Descrição da Tarefa
@@ -27,7 +27,7 @@ Nesta API precisamos:
 - Endpoint para listar as últimas viagens do usuário logado
 - Endpoint para enviar a classificação da viagem e a sua nota
 
-### Paylod dos objetos
+### Payload dos objetos
 
 #### Viagem
 
