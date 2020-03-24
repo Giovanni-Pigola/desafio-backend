@@ -1,65 +1,68 @@
 # Desafio Python Tembici!
 
-Crie um aplicativo backend que exporá uma API RESTful de criação de sing up/sign in.
+Pense nisso como um projeto de código aberto. Deixa de uma forma que você ficasse impressionado se visse isto no Github.
+Como isso ficaria, para que você ficasse impressionado se o encontrasse no Github? Agora vá fazer isso.
 
-Todos os endpoints devem somente aceitar e somente enviar JSONs. O servidor deverá retornar JSON para os casos de endpoint não encontrado também.
+Tente limitar a quantidade de tempo gasto nisso para no máximo 4 horas. No entanto, sinta-se à vontade para gastar mais - apenas verifique se você está satisfeito com seu envio!
 
-O aplicativo deverá persistir os dados (ver detalhes em requisitos).
+_Dica_: Estamos procurando um envio de alta qualidade, não uma abordagem do tipo "apenas faça-o". Lembre-se de que este teste é a sua oportunidade de nos mostrar como você pensa; portanto, seja claro sobre como você está pensando em seu código - seja com comentários, testes, como você nomeia coisas etc. Você será avaliado tanto pelas funcionalidade do seu código quanto pela utilização de boas práticas, desenvolva como se fosse um código de produção em um time e não uma prova ou script.
 
-Todas as respostas de erro devem retornar o objeto:
+## O que fazer
 
-{ "mensagem": "mensagem de erro" }
+### Primeiro
 
-Segue a documentação dos endpoints:
+* Crie uma nova aplicação em Python (qualquer framework está valendo, preferimos o Django)
 
-### Criação de cadastro
 
-- Este endpoint deverá receber um usuário com os seguintes campos: nome, email, senha e uma lista de objetos telefone. Seguem os modelos:
+### Descrição da Tarefa
 
-  { "nome": "string",
-    "email": "string",
-    "senha": "senha",
-    "telefones": [
-       {
-         "numero": "123456789",
-         "ddd": "11"
-       }
-    ]
-  }
-  
-- Usar status codes de acordo
-- Em caso de sucesso irá retornar um usuário mais os campos:
-  - `id`: id do usuário (pode ser o próprio gerado pelo banco, porém seria interessante se fosse um GUID)
-  - `data_criacao`: data da criação do usuário
-  - `data_atualizacao`: data da última atualização do usuário
-  - `ultimo_login`: data do último login (no caso da criação, será a mesma que a criação)
-  - `token`: token de acesso da API (pode ser um GUID ou um JWT)
-- Caso o e-mail já exista, deverá retornar erro com a mensagem "E-mail já existente".
-- O token deverá ser persistido junto com o usuário
+Queremos mostrar no nosso aplicativo as últimas viagens do usuário logado. Também queremos que o nosso usuário possa classificar e dar uma nota para cada viagem.
+Sabendo disto o nosso pessoal de mobile precisa de uma API no backend para que possa colocar estas funcionalidades no nosso aplicativo.
 
-### Sign in
+Nesta API precisamos:
+- Antenticação de usuário no padrão JWT (Não precisa dos endpoints para criar o usuário, mas somente o endpoint que recebe o email e senha do usuário e já faça a sua autenticação na API)
+- Endpoint para listar as últimas viagens do usuário logado.
+- Endpoint para enviar a classificação da viagem e a sua nota
 
-- Este endpoint irá receber um objeto com e-mail e senha.
-- Caso o e-mail exista e a senha seja a mesma que a senha persistida, retornar igual ao endpoint de sign_up.
-- Caso o e-mail não exista, retornar erro com status apropriado mais a mensagem "Usuário e/ou senha inválidos"
-- Caso o e-mail exista mas a senha não bata, retornar o status apropriado 401 mais a mensagem "Usuário e/ou senha inválidos"
+### Paylod dos objetos
 
-### Buscar usuário
+#### Viagem
 
-- Chamadas para este endpoint devem conter um header na requisição de Authentication com o valor "Bearer {token}" onde {token} é o valor do token passado na criação ou sign in de um usuário.
-- Caso o token não exista, retornar erro com status apropriado com a mensagem "Não autorizado".
-- Caso o token exista, buscar o usuário pelo user_id passado no path e comparar se o token no modelo é igual ao token passado no header.
-- Caso não seja o mesmo token, retornar erro com status apropriado e mensagem "Não autorizado"
-- Caso seja o mesmo token, verificar se o último login foi a MENOS que 30 minutos atrás.
-- Caso não seja a MENOS que 30 minutos atrás, retornar erro com status apropriado com mensagem "Sessão inválida".
-- Caso tudo esteja ok, retornar o usuário.
+```json
+{
+  "id": 123,
+  "data_inicio": "2020-02-20T12:10:00Z",
+  "data_fim": "2020-02-20T12:20:00Z",
+  "classificacao": 1,
+  "nota": 3
+}
+```
 
-## Requisitos
+_Obs_: A nota da viagem varia de 1 à 5
 
-- Persitência de dados
+#### Classificação da Viagem
 
-## Requisitos desejáveis
+```json
+[
+{
+  "id": 1,
+  "classificacao": "Trabalho"
+},
+{
+  "id": 2,
+  "classificacao": "Atividade física"
+},
+{
+  "id": 3,
+  "classificacao": "Lazer"
+},
+{
+  "id": 4,
+  "classificacao": "Deslocamento"
+}
+]
+```
 
-- JWT como token
-- Testes unitários
-- Criptogafia não reversível (hash) na senha e no token
+### Banco de dados
+
+Você pode usar o SQLite para persistir os dados da nossa aplicação
